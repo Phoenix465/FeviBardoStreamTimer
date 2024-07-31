@@ -6,21 +6,21 @@
 
 <body class="dark">
     <div class="text-center">
-        <h1 class="input-title">ADD MANUALLY</h1>
+        <h1 class="input-big-title">ADD MANUALLY</h1>
         <div class="dropdown-holder">
             <div>
                 <label class="input-title" for="subscription-type">SUBSCRIPTION TYPE</label>
                 <br>
                 <div class="dropdown">
-                    <button data-unit="" id="subscription-type">NA</button>
+                    <button data-type="" data-unit="" id="subscription-type">NA</button>
                     <div id="subscription-type-holder" class="dropdown-content">
-                        <button data-unit="COUNT">Twitch Tier 1</button>
-                        <button data-unit="BITS">Twitch Bits</button>
-                        <button data-unit="USD">Stream Elements Donation</button>
-                        <button data-unit="USD">Youtube Super Chat</button>
-                        <button data-unit="COUNT">Youtube Membership</button>
-                        <button data-unit="BALLOONS">Afreeca</button>
-                        <button data-unit="CHEESE">CHZZK</button>
+                        <button data-type="TwitchT1" data-unit="COUNT">Twitch Tier 1</button>
+                        <button data-type="TwitchBits" data-unit="BITS">Twitch Bits</button>
+                        <button data-type="StreamElements" data-unit="USD">Stream Elements Donation</button>
+                        <button data-type="YTSuperChat" data-unit="USD">Youtube Super Chat</button>
+                        <button data-type="YTMembership" data-unit="COUNT">Youtube Membership</button>
+                        <button data-type="Afreeca" data-unit="BALLOONS">Afreeca</button>
+                        <button data-type="CHZZK" data-unit="CHEESE">CHZZK</button>
                     </div>
                 </div>
             </div>
@@ -53,9 +53,36 @@
         <br>
 
         <div id="history-block">
-            <h1 class="input-title">HISTORY</h1>
+            <h1 class="input-big-title">HISTORY</h1>
+            <br>
+
+            <table class="table-dark">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Subscription Type</th>
+                        <th>Quantity</th>
+                        <th>Seconds Worth</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody id="history-table">
+
+                </tbody>
+            </table>
         </div>
     </div>
+
+    <template id="history-row-template">
+        <tr>
+            <th scope="row" class="history-row-count">..1</th>
+            <td class="history-row-count">..2</td>
+            <td class="history-row-quantity">..3</td>
+            <td class="history-row-seconds">..4</td>
+            <td class="history-row-points">..5</td>
+<!--            <td><button class="undo-history">❌</button></td>-->
+        </tr>
+    </template>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 	<script src="/static/controller.js"></script>
