@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>Timer Controller</title>
+    <link rel="stylesheet" href="/static/style.css"/>
+</head>
+
+<body class="dark">
+    <div class="text-center">
+        <h1 class="input-title">ADD MANUALLY</h1>
+        <div class="dropdown-holder">
+            <div>
+                <label class="input-title" for="subscription-type">SUBSCRIPTION TYPE</label>
+                <br>
+                <div class="dropdown">
+                    <button data-unit="" id="subscription-type">NA</button>
+                    <div id="subscription-type-holder" class="dropdown-content">
+                        <button data-unit="COUNT">Twitch Tier 1</button>
+                        <button data-unit="BITS">Twitch Bits</button>
+                        <button data-unit="USD">Stream Elements Donation</button>
+                        <button data-unit="USD">Youtube Super Chat</button>
+                        <button data-unit="COUNT">Youtube Membership</button>
+                        <button data-unit="BALLOONS">Afreeca</button>
+                        <button data-unit="CHEESE">CHZZK</button>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div>
+                <label id="subscription-quantity-label" class="input-title" for="subscription-quantity">QUANTITY</label>
+                <br>
+                <div class="dropdown">
+                    <input id="subscription-quantity" class="select" type="text" placeholder="0">
+                </div>
+            </div>
+
+            <br>
+
+            <div>
+                <label class="input-title" for="add-subscription">ADD</label>
+                <br>
+                <div class="dropdown">
+                    <button id="add-subscription" class="save-inactive" onclick="ApplyButtonPressed()">ADD</button>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div id="apply-message" class="info-message no-select">...</div>
+
+        <br>
+
+        <div id="history-block">
+            <h1 class="input-title">HISTORY</h1>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+	<script src="/static/controller.js"></script>
+</body>
+</html>
