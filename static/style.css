@@ -1,0 +1,147 @@
+@font-face {
+    font-family: MotleyForcesRegular;
+    src: url('fonts/MotleyForcesRegular.ttf');
+}
+
+
+body {
+    background-color: #FF8F9F;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body.dark {
+    background-color: #121212;
+}
+
+
+.save-active {
+  background-color: #23A559 !important;
+}
+
+.save-active:hover {
+  background-color: #1A6334 !important;
+  border-radius: 5px !important;
+}
+
+.save-inactive {
+  background-color: #F23F42 !important;
+}
+
+.save-inactive:hover {
+  /*background-color: #89292b !important;*/
+  border-radius: 5px !important;
+}
+
+.info-message {
+  font-style: italic;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.TimerBox {
+    display: inline-block;
+
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 100px;
+
+    background-color: lightblue;
+    border-radius: 50px;
+
+    align-content: center;
+    text-align: center;
+}
+
+.Timer {
+    font-family: MotleyForcesRegular;
+    color: white;
+    font-size: 50px;
+    width: 500px;
+}
+
+
+.text-center {
+    text-align: center !important;
+}
+
+.input-title {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.60);
+}
+
+.input-big-title {
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.60);
+}
+
+.select {
+  user-select: text !important;
+}
+
+.dropdown-holder {
+  display: inline-flex;
+}
+
+.dropdown {
+  margin: 5px;
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown input {
+  border: none;
+  width: 200px;
+  background-color: #1E1F22;
+  color: rgba(255, 255, 255, 0.87);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.dropdown button , .manual-button {
+  border: none;
+  width: 200px;
+  background-color: #1E1F22;
+  color: rgba(255, 255, 255, 0.87);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+}
+
+.dropdown:hover button{
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  position: absolute;
+  z-index: 10;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  width: 100%;
+  overflow: auto;
+  background-color: #2B2D31;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.dropdown-content button {
+  display: block;
+  padding: 5px;
+  text-decoration: none;
+  width: 100%;
+  border: none;
+  background-color: #2B2D31;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.dropdown-content button:hover , .manual-button:hover {
+  background-color: #35373C;
+  border: none;
+}
