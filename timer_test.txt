@@ -1,0 +1,8 @@
+21212:22:42
+
+
+system time, sub time, time added (5 bits)
+system time, sub time, time added (5 bits)
+system time, sub time, time added (5 bits)
+system time, sub time, time added (5 bits)
+temp = system time, sub time, time added (5 bits)
