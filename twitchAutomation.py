@@ -72,6 +72,8 @@ async def run():
     chat.register_event(ChatEvent.READY, onReady)
     chat.register_event(ChatEvent.SUB, onSub)
 
+    chat.start()
+
     # create eventsub websocket instance and start the client.
     eventsub = EventSubWebsocket(twitch)
     eventsub.start()
@@ -95,6 +97,7 @@ async def run():
         print(f" - {e}")
 
     async def shutdown():
+        chat.stop()
         await eventsub.stop()
         await twitch.close()
 
