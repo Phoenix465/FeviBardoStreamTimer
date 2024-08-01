@@ -78,17 +78,17 @@ async def run():
     eventsub = EventSubWebsocket(twitch)
     eventsub.start()
 
-    try:
-        await eventsub.listen_channel_subscribe(targetUser.id, onSubscribe)
-    except Exception as e:
-        print("INSUFFICIENT PERMISSIONS for `listen_channel_subscribe`")
-        print(f" - {e}")
-
-    try:
-        await eventsub.listen_channel_subscription_message(targetUser.id, onSubscribeMessage)
-    except Exception as e:
-        print("INSUFFICIENT PERMISSIONS for `listen_channel_subscription_message`")
-        print(f" - {e}")
+    # try:
+    #     await eventsub.listen_channel_subscribe(targetUser.id, onSubscribe)
+    # except Exception as e:
+    #     print("INSUFFICIENT PERMISSIONS for `listen_channel_subscribe`")
+    #     print(f" - {e}")
+    #
+    # try:
+    #     await eventsub.listen_channel_subscription_message(targetUser.id, onSubscribeMessage)
+    # except Exception as e:
+    #     print("INSUFFICIENT PERMISSIONS for `listen_channel_subscription_message`")
+    #     print(f" - {e}")
 
     try:
         await eventsub.listen_channel_cheer(targetUser.id, onCheer)
