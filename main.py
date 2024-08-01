@@ -15,7 +15,7 @@ import timer
 import twitchAutomation
 
 
-ENABLE_AUTOMATION = True
+ENABLE_AUTOMATION = False
 
 MONTH = datetime.now().date().month
 
