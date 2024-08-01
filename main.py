@@ -21,7 +21,9 @@ CONVERSIONS = {
     "YTSuperChat": [float, 180 / 1.46],  # in USD btw not won
     "YTMembership": [int, 180],
     "Afreeca": [int, 180 / 200],
-    "CHZZK": [int, 180 / 2000]
+    "CHZZK": [int, 180 / 2000],
+    "SystemSeconds": [int, 1],
+    "SystemPoints": [int, 180],
 }
 
 timerTracker = timer.Timer(0)
@@ -160,7 +162,6 @@ def threadUpdater():
         time.sleep(.3)
 
 
-
 if __name__ == "__main__":
     extraDirs = [r'.\static', r'.\templates']
     extraFiles = extraDirs[:]
@@ -178,5 +179,5 @@ if __name__ == "__main__":
     thread.start()
 
     # app.run(port=5050, extra_files=extraFiles)
-    socketio.run(app=app, port=5050, debug=False, use_reloader=False, allow_unsafe_werkzeug=True,
+    socketio.run(app=app, host="0.0.0.0", port=5050, debug=False, use_reloader=False, allow_unsafe_werkzeug=True,
                  extra_files=extraFiles)

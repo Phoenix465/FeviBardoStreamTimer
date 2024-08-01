@@ -15,7 +15,10 @@ body {
     border-radius: 10px;
     color: white;  /* Ensures text is legible against darker background */
     margin-top: 20vh;  /* Adjusts vertical positioning to not overlap important parts of the image */
+    text-align: center;
 }
+
+
 
 .subscription-quantity{
     background-color: rgba(248,238,181, 0.9); !important;
@@ -35,10 +38,11 @@ body {
 .dropdown, .dropdown input, .dropdown button {
     width: 100%;
     background-color: rgba(171,104,37, 0.8);  /* Semi-transparent background for inputs and buttons using color #B17029 */
-    color: black;
+    color: black;  /* Ensures text is legible against darker background */
     padding: 8px;
     border-radius: 5px;
     font-size: 14px;
+    margin: 2px;
 }
 
 .dropdown-content button {
@@ -52,8 +56,13 @@ body {
     border-radius: 15px;
     max-width: 300px;  /* Ensures table is not too wide */
     padding: 8px 15px;  /* Padding inside the table */
+    border: 1px solid black;
 }
 
 .table-dark th, .table-dark td {
     padding: 8px;  /* Comfortable padding for readability */
+}
+
+.table-dark tr {
+    border-bottom: 5px solid black;
 }
