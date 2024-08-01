@@ -66,3 +66,7 @@ This is the output of your instance.
 - Use the properties menu for the text source to adjust font size, color, and other styling options to fit your streaming setup.
 
 
+### ToDo
+1. we had the same idea, testing on fevi stream for twitch automation
+2. undo/redo
+3. add a button to add a flat amount of time in minutes, for initialization the subathon session and for manual corrections/whatever other reason
