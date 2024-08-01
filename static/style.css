@@ -14,10 +14,14 @@ body {
     padding: 15px;
     border-radius: 10px;
     color: white;  /* Ensures text is legible against darker background */
-    margin-top: 20vh;  /* Adjusts vertical positioning to not overlap important parts of the image */
+    /*margin-top: 0.5vh;  !* Adjusts vertical positioning to not overlap important parts of the image *!*/
+    margin-top: 0;  /* Adjusts vertical positioning to not overlap important parts of the image */
     text-align: center;
 }
 
+.gap {
+    height: 10px;  /* Adds space between elements */
+}
 
 
 .subscription-quantity{
