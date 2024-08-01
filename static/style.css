@@ -1,184 +1,59 @@
-@font-face {
-    font-family: MotleyForcesRegular;
-    src: url('fonts/MotleyForcesRegular.ttf');
-}
-
-
 body {
-    background-color: #FF8F9F;
     font-family: 'Open Sans', sans-serif;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    align-items: center;  /* Vertically centers the content */
+    justify-content: flex-start;  /* Aligns content to the left */
+    padding-left: 5%;  /* Padding from the left edge */
 }
-
-body.dark {
-    background-color: #121212;
-}
-
-
-.save-active {
-    background-color: #23A559 !important;
-}
-
-.save-active:hover {
-    background-color: #1A6334 !important;
-    border-radius: 5px !important;
-}
-
-.save-inactive {
-    background-color: #F23F42 !important;
-}
-
-.save-inactive:hover {
-    /*background-color: #89292b !important;*/
-    border-radius: 5px !important;
-}
-
-.info-message {
-    font-style: italic;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.38);
-}
-
-.TimerBox {
-    display: inline-block;
-
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 100px;
-
-    background-color: lightblue;
-    border-radius: 50px;
-
-    align-content: center;
-    text-align: center;
-}
-
-.Timer {
-    font-family: MotleyForcesRegular;
-    color: white;
-    font-size: 50px;
-    width: 500px;
-}
-
 
 .text-center {
-    text-align: center !important;
+    width: 100%;
+    max-width: 300px;  /* Adjusted width for smaller footprint */
+    padding: 15px;
+    border-radius: 10px;
+    color: white;  /* Ensures text is legible against darker background */
+    margin-top: 20vh;  /* Adjusts vertical positioning to not overlap important parts of the image */
 }
 
-.input-title {
+.subscription-quantity{
+    background-color: rgba(248,238,181, 0.9); !important;
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.60);
 }
 
-.input-big-title {
-    font-size: 30px;
-    color: rgba(255, 255, 255, 0.60);
-}
-
-.select {
-    user-select: text !important;
-}
 
 .dropdown-holder {
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.dropdown {
-    margin: 5px;
-    display: inline-block;
-    position: relative;
-}
-
-.dropdown input {
-    border: none;
-    width: 200px;
-    background-color: #1E1F22;
-    color: rgba(255, 255, 255, 0.87);
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.dropdown button , .manual-button {
-    border: none;
-    width: 200px;
-    background-color: #1E1F22;
-    color: rgba(255, 255, 255, 0.87);
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 5px;
-}
-
-.dropdown:hover button{
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-    position: absolute;
-    z-index: 10;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
+.dropdown, .dropdown input, .dropdown button {
     width: 100%;
-    overflow: auto;
-    background-color: #2B2D31;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    background-color: rgba(171,104,37, 0.8);  /* Semi-transparent background for inputs and buttons using color #B17029 */
+    color: black;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
 .dropdown-content button {
-    display: block;
-    padding: 5px;
-    text-decoration: none;
-    width: 100%;
-    border: none;
-    background-color: #2B2D31;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin: 2px;
+    background-color: rgba(248,238,181, 0.9);  /* Slightly darker for dropdown items */
 }
-
-.dropdown-content button:hover , .manual-button:hover {
-    background-color: #35373C;
-    border: none;
-}
-
 
 .table-dark {
-    display: inline-block;
-    color: rgba(255, 255, 255, 0.87);
-
-    margin-left: auto;
-    margin-right: auto;
-
-    /*column-width: 500px;*/
-
-    text-align: left;
-    border-radius: 20px;
+    background-color: rgba(171,104,37, 0.8);  /* Semi-transparent red for table */
+    margin-top: 10px;  /* Space between dropdown and table */
+    border-radius: 15px;
+    max-width: 300px;  /* Ensures table is not too wide */
+    padding: 8px 15px;  /* Padding inside the table */
 }
 
-table tr:nth-child(odd){
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-table tr:nth-child(even){
-    background-color: rgba(255, 255, 255, 0.12);
-}
-
-th, td {
-    padding: 5px 50px 5px 5px;
-    /*border: 1px solid black;*/
-}
-
-.undo-history {
-    border: none;
-    padding: 3px;
-    border-radius: 5px;
-}
-
-.undo-history:hover {
-    background-color: rgba(255, 255, 255, 0.8);
+.table-dark th, .table-dark td {
+    padding: 8px;  /* Comfortable padding for readability */
 }

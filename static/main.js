@@ -19,4 +19,3 @@ socket.on("result", function (data) {
 })
 
 setInterval(updateTimer, 100);
-setInterval()

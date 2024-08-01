@@ -1,16 +1,14 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<title>Timer Controller</title>
     <link rel="stylesheet" href="/static/style.css"/>
 </head>
 
-<body class="dark">
+<body class="dark" style="background-image: url('{{ url_for('static', filename='No_Name_Art/No_Name_ART_' ~ month ~ '.png') }}'); height: 100vh; background-size: cover;">
     <div class="text-center">
-        <h1 class="input-big-title">ADD MANUALLY</h1>
         <div class="dropdown-holder">
             <div>
-                <label class="input-title" for="subscription-type">SUBSCRIPTION TYPE</label>
-                <br>
                 <div class="dropdown">
                     <button data-type="" data-unit="" id="subscription-type">NA</button>
                     <div id="subscription-type-holder" class="dropdown-content">
@@ -30,7 +28,7 @@
             <div>
                 <label id="subscription-quantity-label" class="input-title" for="subscription-quantity">QUANTITY</label>
                 <br>
-                <div class="dropdown">
+                <div class="subscription-quantity">
                     <input id="subscription-quantity" class="select" type="text" placeholder="0">
                 </div>
             </div>
@@ -38,8 +36,6 @@
             <br>
 
             <div>
-                <label class="input-title" for="add-subscription">ADD</label>
-                <br>
                 <div class="dropdown">
                     <button id="add-subscription" class="save-inactive" onclick="ApplyButtonPressed()">ADD</button>
                 </div>
@@ -48,12 +44,11 @@
 
         <br>
 
-        <div id="apply-message" class="info-message no-select">...</div>
+        <div id="apply-message" class="info-message no-select"></div>
 
         <br>
 
         <div id="history-block">
-            <h1 class="input-big-title">HISTORY</h1>
             <br>
 
             <table class="table-dark">

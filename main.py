@@ -1,18 +1,18 @@
 import flask
 import os
 from pathlib import Path
-from flask_socketio import send, emit, SocketIO
+from flask_socketio import emit, SocketIO
 import threading
 import logging
 import json
 import time
 from math import floor
-
-
+from datetime import datetime, time
 import timer
 
+MONTH = datetime.now().date().month
 
-conversions = {
+CONVERSIONS = {
     "TwitchT1": [int, 180],
     "TwitchT2": [int, 180],
     "TwitchT3": [int, 180],
@@ -39,24 +39,21 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 socketio = SocketIO(app)
 
 
-@app.route("/")
-def base():
-    return "Welcome to the Timer"
-
-
 @app.route("/timer")
 def timer():
     return flask.render_template("timer.html")
 
 
-@app.route("/controller")
+@app.route("/")
 def controller():
-    return flask.render_template("controller.html")
+    return flask.render_template("controller.html",
+                                 month=MONTH
+                                 )
 
 
 @socketio.on("connect")
 def connectedClient(data):
-    print(f'Client Connected {data  }')
+    print(f'Client Connected {data}')
 
 
 @socketio.on("getSeconds")
@@ -85,14 +82,14 @@ def addTimerInfo(data):
 
     subType = data["type"]
 
-    if subType not in conversions:
+    if subType not in CONVERSIONS:
         emit("result", {
             "type": "add-error",
             "reason": f"SUBSCRIPTION TYPE NOT FOUND"
         })
         return
 
-    castFunction = conversions[subType][0]
+    castFunction = CONVERSIONS[subType][0]
     quantityCast = 0
     try:
         quantityCast = castFunction(data["quantity"])
@@ -103,7 +100,7 @@ def addTimerInfo(data):
         })
         return
 
-    seconds = conversions[subType][1] * quantityCast
+    seconds = CONVERSIONS[subType][1] * quantityCast
     history["log"].insert(0, {
         "#": len(history["log"]) + 1,
         "type": subType,
@@ -145,7 +142,6 @@ def updateOBSFiles():
         seconds %= 3600
         minutes = seconds // 60
         seconds %= 60
-
         f.seek(0)
         f.write(f"{hour:02}:{minutes:02}:{seconds:02}")
         f.truncate()
@@ -182,4 +178,5 @@ if __name__ == "__main__":
     thread.start()
 
     # app.run(port=5050, extra_files=extraFiles)
-    socketio.run(app=app, port=5050, debug=False, use_reloader=False, allow_unsafe_werkzeug=True, extra_files=extraFiles)
+    socketio.run(app=app, port=5050, debug=False, use_reloader=False, allow_unsafe_werkzeug=True,
+                 extra_files=extraFiles)
