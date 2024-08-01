@@ -90,4 +90,10 @@ for (const child of subscriptionTypeHolderEl.children) {
         }
     });
 }
+
+function ForceUpdateHistory() {
+    socket.emit("getHistory");
+}
+
+setInterval(ForceUpdateHistory, 2000);
 socket.emit("getHistory");

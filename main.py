@@ -8,7 +8,14 @@ import json
 import time
 from math import floor
 from datetime import datetime
+from flask import request
+
+
 import timer
+import twitchAutomation
+
+
+ENABLE_AUTOMATION = True
 
 MONTH = datetime.now().date().month
 
@@ -53,6 +60,20 @@ def controller():
                                  )
 
 
+@app.route("/api/v1/manual")
+def test():
+    subType = request.args.get('type', default=None, type=str)
+    subQuantity = request.args.get("quantity", default=None, type=float)
+
+    if subType and subQuantity:
+        addTimerInfo({
+            "type": subType,
+            "quantity": subQuantity
+        }, isServer=True)
+
+    return "DONE"
+
+
 @socketio.on("connect")
 def connectedClient(data):
     print(f'Client Connected {data}')
@@ -79,13 +100,15 @@ def addSeconds(data):
 
 
 @socketio.on("addTimerInfo")
-def addTimerInfo(data):
+def addTimerInfo(data, isServer=False):
     print("Adding Timer Info", data)
 
     subType = data["type"]
 
+    emitFunc = emit if not isServer else lambda *args: None
+
     if subType not in CONVERSIONS:
-        emit("result", {
+        emitFunc("result", {
             "type": "add-error",
             "reason": f"SUBSCRIPTION TYPE NOT FOUND"
         })
@@ -96,7 +119,7 @@ def addTimerInfo(data):
     try:
         quantityCast = castFunction(data["quantity"])
     except ValueError:
-        emit("result", {
+        emitFunc("result", {
             "type": "add-error",
             "reason": f"{data['quantity']} should be a {castFunction.__name__}"
         })
@@ -119,11 +142,11 @@ def addTimerInfo(data):
     json.dump(history, outFile)
     outFile.close()
 
-    emit("result", {
+    emitFunc("result", {
         "type": "add-info",
     })
 
-    emit("result", {
+    emitFunc("result", {
         "type": "history-update",
         "history": history["log"][:5]
     })
@@ -162,6 +185,12 @@ def threadUpdater():
         time.sleep(.3)
 
 
+def twitchAutomationThread():
+    print("[SYSTEM] TWITCH AUTOMATION THREAD MADE")
+    import asyncio
+    asyncio.run(twitchAutomation.run())
+
+
 if __name__ == "__main__":
     extraDirs = [r'.\static', r'.\templates']
     extraFiles = extraDirs[:]
@@ -177,6 +206,10 @@ if __name__ == "__main__":
 
     thread = threading.Thread(target=threadUpdater, daemon=True)
     thread.start()
+
+    if ENABLE_AUTOMATION:
+        thread = threading.Thread(target=twitchAutomationThread, daemon=True)
+        thread.start()
 
     # app.run(port=5050, extra_files=extraFiles)
     socketio.run(app=app, host="0.0.0.0", port=5050, debug=False, use_reloader=False, allow_unsafe_werkzeug=True,
