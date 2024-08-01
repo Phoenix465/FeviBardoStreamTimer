@@ -7,7 +7,7 @@ import logging
 import json
 import time
 from math import floor
-from datetime import datetime, time
+from datetime import datetime
 import timer
 
 MONTH = datetime.now().date().month
@@ -150,7 +150,6 @@ def updateOBSFiles():
         f.seek(0)
         f.write(f"{floor(history['points'])}")
         f.truncate()
-
     # print("UPDATE", seconds, history["points"])
 
 
@@ -158,7 +157,8 @@ def threadUpdater():
     print("[SYSTEM] THREAD MADE")
     while True:
         updateOBSFiles()
-        time.sleep(0.5)
+        time.sleep(.3)
+
 
 
 if __name__ == "__main__":
