@@ -47,13 +47,13 @@ python main.py
 ```
 This command starts the server on your local machine.
 
-## Step 4: Open the Website
+## Step 4: Open the Website Panel
 
 Open a web browser and go to:
 ```bash
 http://127.0.0.1:5050/
 ```
-This URL will take you to the hosted application on your local server; this is where you input cheese, youtube, memberships, streamlabs, and more.
+This URL will take you to the hosted application panel on your local server; this is where you input cheese, youtube, memberships, streamlabs, and more.
 
 ## Step 5: Setup OBS for Displaying the Timer
 This is the output of your instance. 
