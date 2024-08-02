@@ -14,14 +14,16 @@ MONTH = datetime.now().date().month
 
 CONVERSIONS = {
     "TwitchT1": [int, 180],
-    "TwitchT2": [int, 180],
-    "TwitchT3": [int, 180],
+    "TwitchT2": [int, 180 * 10/6],
+    "TwitchT3": [int, 180 * 25/6],
     "TwitchBits": [int, 180 / 200],
     "StreamElements": [float, 180 / 2],
     "YTSuperChat": [float, 180 / 1.46],  # in USD btw not won
     "YTMembership": [int, 180],
     "Afreeca": [int, 180 / 200],
-    "CHZZK": [int, 180 / 2000]
+    "CHZZK": [int, 180 / 2000],
+    "Manual_Input +": [int, 60],
+    "Manual_Input -": [float, -60]
 }
 
 timerTracker = timer.Timer(0)

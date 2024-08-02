@@ -5,35 +5,37 @@
     <link rel="stylesheet" href="/static/style.css"/>
 </head>
 
-<body class="dark" style="background-image: url('{{ url_for('static', filename='No_Name_Art/No_Name_ART_' ~ month ~ '.png') }}'); height: 100vh; background-size: cover;">
-    <div class="text-center">
+<body class="dark" style="background-image: url('{{ url_for('static', filename='No_Name_Art/No_Name_ART_' ~ month ~ '.png') }}'); height: 100vh; background-size: cover; background-position: 30% center; background-repeat: no-repeat;">
+<div class="text-center">
         <div class="dropdown-holder">
             <div>
                 <div class="dropdown">
                     <button data-type="" data-unit="" id="subscription-type">NA</button>
                     <div id="subscription-type-holder" class="dropdown-content">
                         <button data-type="TwitchT1" data-unit="COUNT">Twitch Tier 1</button>
+                        <button data-type="TwitchT2" data-unit="COUNT">Twitch Tier 2</button>
+                        <button data-type="TwitchT3" data-unit="COUNT">Twitch Tier 3</button>
                         <button data-type="TwitchBits" data-unit="BITS">Twitch Bits</button>
                         <button data-type="StreamElements" data-unit="USD">Stream Elements Donation</button>
                         <button data-type="YTSuperChat" data-unit="USD">Youtube Super Chat</button>
                         <button data-type="YTMembership" data-unit="COUNT">Youtube Membership</button>
                         <button data-type="Afreeca" data-unit="BALLOONS">Afreeca</button>
                         <button data-type="CHZZK" data-unit="CHEESE">CHZZK</button>
+                        <button data-type="Manual_Input +" data-unit="Minutes">Manual_Input +</button>
+                        <button data-type="Manual_Input -" data-unit="Minutes">Manual_Input -</button>
                     </div>
                 </div>
             </div>
 
-            <br>
 
             <div>
                 <label id="subscription-quantity-label" class="input-title" for="subscription-quantity">QUANTITY</label>
-                <br>
+
                 <div class="subscription-quantity">
                     <input id="subscription-quantity" class="select" type="text" placeholder="0">
                 </div>
             </div>
 
-            <br>
 
             <div>
                 <div class="dropdown">
@@ -42,14 +44,11 @@
             </div>
         </div>
 
-        <br>
+        <div id="apply-message" class="info-message-no-select"></div>
 
-        <div id="apply-message" class="info-message no-select"></div>
-
-        <br>
 
         <div id="history-block">
-            <br>
+
 
             <table class="table-dark">
                 <thead>

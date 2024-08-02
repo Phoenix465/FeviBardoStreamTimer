@@ -7,6 +7,11 @@ body {
     justify-content: flex-start;  /* Aligns content to the left */
     padding-left: 5%;  /* Padding from the left edge */
 }
+.apply-message, .info-message-no-select{
+    color:rgba(248,238,181, 0.9);
+    background-color: rgba(171,104,37, 0.8);
+}
+
 
 .text-center {
     width: 100%;
