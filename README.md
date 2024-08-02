@@ -1,11 +1,13 @@
+### What is it?
+It's a manual subathon timer with a browser-based controller panel that links to OBS via a .txt file for [feviknight](https://www.twitch.tv/feviknight). It supports manual tracking for YouTube SC/Memberships, Twitch Subs/Bits, CHZZK and Afreeca.
 
 ### Features
 1. Panel to add/subtract time/points
 2. Panel inputs convert mathematically into proper output, based on type of support given
 3. obs/Timer.txt and obs/Points.txt to hook into OBS; files generated on first program run
-4. a 'ledger' that tracks most recent 5 actions
+4. a 'ledger' that stores all actions but only the last 5 are visible
 5. crash proof; since the clock is based on math done on system time since less action in relation to current system time-- **program can be turned off and on with no issue or lost details**
-6. background image changes based on month of the year from a selection of 12 [Feviknight](https://www.twitch.tv/feviknight) fan art made by discord user invartist, no_name 
+6. background image changes based on month of the year from a selection of 12 [feviknight](https://www.twitch.tv/feviknight) fan art made by discord user invartist, no_name 
 ![image](https://github.com/user-attachments/assets/88de1d4e-b376-427c-9b87-5a732a9f778b)
 
 # Project Setup Guide
