@@ -1,11 +1,13 @@
+### Features
+1. Panel to add/subtract time/points
+2. Convert mathematically based on type of support given
+3. obs/Timer.txt and obs/Points.txt to hook into OBS; files generated on first program run
+4. a 'ledger' that tracks most recent 5 actions
+5. crash proof; since the clock is based on math done on system time since less action in relation to current system time-- program can be turned off and on with no issue or lost details
+
 # Project Setup Guide
 
 This guide will walk you through setting up and running the project on a Windows environment. It covers reinstalling Python, configuring system environment variables, installing necessary packages, running the application, and setting up OBS (Open Broadcaster Software) for displaying the timer.
-
-## Prerequisites
-
-- Access to an administrative account on your Windows machine.
-- Internet connection for downloading software and dependencies.
 
 ## Step 1: Reinstall Python and Set Path in System Settings
 
@@ -66,7 +68,3 @@ This is the output of your instance.
 - Use the properties menu for the text source to adjust font size, color, and other styling options to fit your streaming setup.
 
 
-### ToDo
-1. we had the same idea, testing on fevi stream for twitch automation
-2. undo/redo
-3. add a button to add a flat amount of time in minutes, for initialization the subathon session and for manual corrections/whatever other reason
