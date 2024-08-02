@@ -4,7 +4,8 @@
 2. Convert mathematically based on type of support given
 3. obs/Timer.txt and obs/Points.txt to hook into OBS; files generated on first program run
 4. a 'ledger' that tracks most recent 5 actions
-5. crash proof; since the clock is based on math done on system time since less action in relation to current system time-- program can be turned off and on with no issue or lost details
+5. crash proof; since the clock is based on math done on system time since less action in relation to current system time-- **program can be turned off and on with no issue or lost details**
+6. background image changes based on month of the year
 ![image](https://github.com/user-attachments/assets/88de1d4e-b376-427c-9b87-5a732a9f778b)
 
 # Project Setup Guide
