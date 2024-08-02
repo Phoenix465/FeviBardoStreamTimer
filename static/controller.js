@@ -56,7 +56,7 @@ socket.on('result', function (data) {
         applyMessageEl.textContent = `[FAILED] Last Applied at ${today.toUTCString()} due to "${data['reason']}"`
     }
     else if (data["type"] === "add-info") {
-        applyMessageEl.textContent = `[SUCCESSFUL] Last Applied at ${today.toUTCString()}}"`
+        applyMessageEl.textContent = `[SUCCESSFUL] Last Applied at ${today.toUTCString()}"`
     }
     else if (data["type"] === "history-update") {
         historyEl.innerHTML = "";
@@ -65,8 +65,8 @@ socket.on('result', function (data) {
             rowEl = rowEl.replaceAll("..1", info["#"])
             rowEl = rowEl.replaceAll("..2", info["type"])
             rowEl = rowEl.replaceAll("..3", info["quantity"])
-            rowEl = rowEl.replaceAll("..4", info["seconds"])
-            rowEl = rowEl.replaceAll("..5", info["points"])
+            rowEl = rowEl.replaceAll("..4", Math.round(info["seconds"] * 100) / 100)
+            rowEl = rowEl.replaceAll("..5", Math.round(info["points"] * 100) / 100)
 
             historyEl.insertAdjacentHTML("beforeend", rowEl);
         }
@@ -90,4 +90,10 @@ for (const child of subscriptionTypeHolderEl.children) {
         }
     });
 }
+
+function ForceUpdateHistory() {
+    socket.emit("getHistory");
+}
+
+setInterval(ForceUpdateHistory, 2000);
 socket.emit("getHistory");
