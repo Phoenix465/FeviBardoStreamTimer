@@ -13,11 +13,6 @@ python-socketio==5.11.3
 simple-websocket==1.0.0
 Werkzeug==3.0.3
 wsproto==1.2.0
-<<<<<<< HEAD
-
-twitchAPI~=4.2.1
-=======
 twitchAPI~=4.2.1
 websockets~=12.0
 requests~=2.32.3
->>>>>>> 1e34fb938eb2de98e5519841fd326e653f0f2b48

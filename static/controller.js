@@ -36,6 +36,7 @@ function ApplyButtonPressed() {
             type: subscriptionTypeEl.getAttribute("data-type"),
             quantity: subscriptionQuantityEl.value
         });
+        subscriptionQuantityEl.value = "";
     }
 
     settingsChanged = false;

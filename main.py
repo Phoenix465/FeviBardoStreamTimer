@@ -22,8 +22,8 @@ CONVERSIONS = {
     "YTMembership": [int, 180],
     "Afreeca": [int, 180 / 200],
     "CHZZK": [int, 180 / 2000],
-    "Manual_Input +": [int, 60],
-    "Manual_Input -": [float, -60]
+    "SystemMinutes": [float, 60],
+    "SystemPoints": [float, 180]
 }
 
 timerTracker = timer.Timer(0)
@@ -103,19 +103,27 @@ def addTimerInfo(data):
         return
 
     seconds = CONVERSIONS[subType][1] * quantityCast
+    points = seconds / 180
+
+    if subType == "SystemPoints":
+        seconds = 0
+    elif subType == "SystemMinutes":
+        points = 0
+
     history["log"].insert(0, {
         "#": len(history["log"]) + 1,
         "type": subType,
         "quantity": quantityCast,
         "seconds": seconds,
-        "points": seconds / 180,
+        "points": points,
     })
     timerTracker.addSeconds(seconds)
 
     history["time"] = timerTracker.endTimeReference
-    history["points"] += seconds / 180
-    if history["points"] < 0: # no negative points allowed
+    history["points"] += points
+    if history["points"] < 0:  # no negative points allowed
         history["points"] = 0
+
     outFile = open("history.json", "w+")
     json.dump(history, outFile)
     outFile.close()
@@ -161,7 +169,6 @@ def threadUpdater():
     while True:
         updateOBSFiles()
         time.sleep(.3)
-
 
 
 if __name__ == "__main__":
