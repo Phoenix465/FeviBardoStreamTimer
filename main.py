@@ -114,7 +114,8 @@ def addTimerInfo(data):
 
     history["time"] = timerTracker.endTimeReference
     history["points"] += seconds / 180
-
+    if history["points"] < 0: # no negative points allowed
+        history["points"] = 0
     outFile = open("history.json", "w+")
     json.dump(history, outFile)
     outFile.close()
