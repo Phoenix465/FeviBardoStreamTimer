@@ -12,6 +12,10 @@ import timer
 
 MONTH = datetime.now().date().month
 
+if MONTH == 8:  # skipping 8 for july bc Fevi said she likes it more
+    MONTH = 7
+
+
 CONVERSIONS = {
     "TwitchT1": [int, 180],
     "TwitchT2": [int, 180 * 10/6],
