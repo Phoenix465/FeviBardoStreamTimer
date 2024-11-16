@@ -23,7 +23,7 @@ CONVERSIONS = {
     "StreamElements": [float, 180 / 2],
     "YTSuperChat": [float, 180 / 1.46],  # in USD btw not won
     "YTMembership": [int, 180],
-    "Afreeca": [int, 180 / 200],
+    "Afreeca": [int, 180 / 100],
     "CHZZK": [int, 180 / 2000],
     "SystemMinutes": [float, 60],
     "SystemPoints": [float, 180]
