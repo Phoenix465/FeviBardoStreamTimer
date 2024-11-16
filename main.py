@@ -15,11 +15,10 @@ MONTH = datetime.now().date().month
 if MONTH == 8:  # skipping 8 for july bc Fevi said she likes it more
     MONTH = 7
 
-
 CONVERSIONS = {
     "TwitchT1": [int, 180],
-    "TwitchT2": [int, 180 * 10/6],
-    "TwitchT3": [int, 180 * 25/6],
+    "TwitchT2": [int, 180 * 10 / 6],
+    "TwitchT3": [int, 180 * 25 / 6],
     "TwitchBits": [int, 180 / 200],
     "StreamElements": [float, 180 / 2],
     "YTSuperChat": [float, 180 / 1.46],  # in USD btw not won
@@ -77,9 +76,76 @@ def getSeconds():
 
 
 @socketio.on("addSeconds")
-def addSeconds(data):
-    print("Adding Seconds", data)
-    timerTracker.addSeconds(data["seconds"])
+def add_seconds(data):
+    pause_file_path = 'pause.txt'
+    history_file_path = 'history.json'
+
+    # Load existing history or initialize
+    if os.path.isfile(history_file_path):
+        with open(history_file_path, 'r') as file:
+            history = json.load(file)
+        timerTracker.endTimeReference = history["time"]
+    else:
+        history = {"time": None, "points": 0, "log": []}
+
+    if isinstance(data, dict) and data.get("seconds") == -111.111:
+        if not os.path.exists(pause_file_path):
+            with open(pause_file_path, 'w') as file:
+                file.write('0:00')
+            print("File initialized to 0:00")
+
+        with open(pause_file_path, 'r') as file:
+            paused_time = file.readline().strip()
+
+        if paused_time == '0:00':
+            print("Pause")
+            with open(pause_file_path, 'w') as file:
+                file.write(datetime.utcnow().isoformat() + '\n')
+                file.write(str(timerTracker.getTimeLeft() % (24 * 3600)) + '\n')
+        else:
+            print("Unpause")
+            pause_time = datetime.fromisoformat(paused_time)
+            elapsed_time = datetime.utcnow() - pause_time
+            elapsed_seconds = elapsed_time.total_seconds()
+
+            with open(pause_file_path, 'r') as file:
+                file_lines = file.readlines()
+                stored_seconds = float(file_lines[1].strip()) if len(file_lines) > 1 else 0.0
+
+            with open(pause_file_path, 'w') as file:
+                file.write('0:00')
+
+            timerTracker.addSeconds(-999999999999)
+            timerTracker.addSeconds(elapsed_seconds + stored_seconds)
+
+            # Record unpause event in history
+            history["log"].insert(0, {
+                "#": len(history["log"]) + 1,
+                "type": "Unpause",
+                "quantity": elapsed_seconds + stored_seconds,
+                "seconds": elapsed_seconds + stored_seconds,
+                "points": 0,  # Points are not affected by unpause directly
+            })
+
+            history["time"] = timerTracker.endTimeReference
+            history["points"] = sum(entry["points"] for entry in history["log"])
+
+            with open(history_file_path, 'w') as outFile:
+                json.dump(history, outFile)
+
+            emit("result", {
+                "type": "unpause",
+                "result": f"Timer unpaused. Added {elapsed_seconds + stored_seconds} seconds."
+            })
+
+            emit("result", {
+                "type": "history-update",
+                "history": history["log"][:5]
+            })
+    else:
+        print("Adding Seconds", data)
+        timerTracker.addSeconds(data["seconds"])
+
 
 
 @socketio.on("addTimerInfo")

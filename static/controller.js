@@ -17,6 +17,10 @@ function addSeconds(seconds) {
     socket.emit("addSeconds", {seconds: seconds});
 }
 
+document.getElementById('pause').addEventListener('click', function() {
+    socket.emit("addSeconds", {seconds: -111.111});
+});
+
 function UpdateApplyButtonStatus() {
     const applyButtonEl = document.getElementById("add-subscription");
     if (settingsChanged) {
