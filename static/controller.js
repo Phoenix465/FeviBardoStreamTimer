@@ -76,6 +76,14 @@ socket.on('result', function (data) {
             historyEl.insertAdjacentHTML("beforeend", rowEl);
         }
     }
+    else if (data["type"] === "update-pause") {
+        if (data["paused"]) {
+            document.getElementById("pause").textContent = "Unpause";
+        }
+        else {
+            document.getElementById("pause").textContent = "Pause";
+        }
+    }
 });
 
 

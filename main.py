@@ -42,6 +42,7 @@ app = flask.Flask(__name__)
 app.logger.setLevel(logging.INFO)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 socketio = SocketIO(app)
+pause_file_path = 'pause.txt'
 
 
 @app.route("/timer")
@@ -77,7 +78,6 @@ def getSeconds():
 
 @socketio.on("addSeconds")
 def add_seconds(data):
-    pause_file_path = 'pause.txt'
     history_file_path = 'history.json'
 
     # Load existing history or initialize
@@ -97,6 +97,11 @@ def add_seconds(data):
         with open(pause_file_path, 'r') as file:
             paused_time = file.readline().strip()
 
+        emit("result", {
+            "type": "update-pause",
+            "paused": paused_time == '0:00'
+        })
+
         if paused_time == '0:00':
             print("Pause")
             with open(pause_file_path, 'w') as file:
@@ -115,8 +120,9 @@ def add_seconds(data):
             with open(pause_file_path, 'w') as file:
                 file.write('0:00')
 
-            timerTracker.addSeconds(-999999999999)
-            timerTracker.addSeconds(elapsed_seconds + stored_seconds)
+            # timerTracker.addSeconds(-999999999999)
+            # timerTracker.addSeconds(elapsed_seconds + stored_seconds)
+            timerTracker.__init__(stored_seconds)
 
             # Record unpause event in history
             history["log"].insert(0, {
@@ -145,7 +151,6 @@ def add_seconds(data):
     else:
         print("Adding Seconds", data)
         timerTracker.addSeconds(data["seconds"])
-
 
 
 @socketio.on("addTimerInfo")
@@ -215,10 +220,22 @@ def getHistory():
         "history": history["log"][:5]
     })
 
+    with open(pause_file_path, 'r') as file:
+        paused_time = file.readline().strip()
+
+    emit("result", {
+        "type": "update-pause",
+        "paused": paused_time != '0:00'
+    })
 
 def updateOBSFiles():
     with open("obs/timer.txt", "w+") as f:
         seconds = timerTracker.getTimeLeft() % (24 * 3600)
+        with open(pause_file_path, 'r') as file:
+            file_lines = file.readlines()
+            stored_seconds = int(file_lines[1].strip()) if len(file_lines) > 1 else 0
+        seconds = round(stored_seconds) or seconds
+
         hour = seconds // 3600
         seconds %= 3600
         minutes = seconds // 60
