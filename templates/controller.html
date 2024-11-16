@@ -40,6 +40,7 @@
             <div>
                 <div class="dropdown">
                     <button id="add-subscription" class="save-inactive" onclick="ApplyButtonPressed()">ADD</button>
+                    <button id="pause" class="save-inactive" onclick="ApplyButtonPressed()">Pause</button>
                 </div>
             </div>
         </div>
@@ -80,5 +81,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
 	<script src="/static/controller.js"></script>
+<script>
+    // Check if this is the user's first time launching the program
+    window.addEventListener('load', function() {
+        alert("It looks like the page was refreshed. You might want to unpause the timer.");
+    });
+</script>
 </body>
 </html>
