@@ -14,7 +14,7 @@ It's a manual subathon timer with a browser-based controller panel that links to
 
 This guide will walk you through setting up and running the project on a Windows environment. It covers installing Python, configuring system environment variables, installing necessary packages, running the application, and setting up OBS (Open Broadcaster Software) for displaying the timer.
 
-## Step 1: install Python and Set Path in System Settings
+## Step 1: Install Python and Set Path in System Settings
 
 ### Installing Python
 
